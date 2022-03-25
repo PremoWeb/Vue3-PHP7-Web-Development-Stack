@@ -37,7 +37,7 @@ jobs:
         
       - name: Build Front-end
         run: |
-          npm run build -- --base=/${{ github.event.repository.name }}/
+          npm run build
 
       - uses: master-atul/tar-action@v1.0.2
         id: compress
