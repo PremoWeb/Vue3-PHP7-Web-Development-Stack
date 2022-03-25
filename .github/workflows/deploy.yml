@@ -42,6 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [frontend]
     steps:
+      - uses: actions/checkout@v
       - uses: master-atul/tar-action@v1.0.2
         id: compress
         with:
