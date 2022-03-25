@@ -11,7 +11,7 @@ defaults:
     working-directory: ./
     
 jobs:
-  build-vue3-app:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -25,7 +25,6 @@ jobs:
         run: |
           npm run build
 
-      - uses: actions/checkout@v2
       - uses: master-atul/tar-action@v1.0.2
         id: compress
         with:
