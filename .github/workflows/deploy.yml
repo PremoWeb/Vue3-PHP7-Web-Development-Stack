@@ -6,7 +6,10 @@ on:
     branches: [ 'main' ]
 
   workflow_dispatch:
-
+defaults:
+  run:
+    working-directory: ./
+    
 jobs:
   build-vue3-app:
     runs-on: ubuntu-latest
