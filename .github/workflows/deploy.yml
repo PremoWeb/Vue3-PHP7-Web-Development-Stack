@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: frontend
-          path: .
+          path: ./dist
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,6 +47,7 @@ jobs:
           command: c
           cwd: ./
           files: |
+            ./dist
             ./backend
             ./captain-definition
             ./Dockerfile
