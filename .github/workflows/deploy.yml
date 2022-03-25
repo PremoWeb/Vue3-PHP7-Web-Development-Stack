@@ -24,6 +24,7 @@ jobs:
       - name: Build frontend
         run: |
           npm run build
+        build_dir: backend/dist
 
       - uses: master-atul/tar-action@v1.0.2
         id: compress
