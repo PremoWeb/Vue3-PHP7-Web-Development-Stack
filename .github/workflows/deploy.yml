@@ -11,7 +11,7 @@ defaults:
     working-directory: ./
     
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,25 +21,40 @@ jobs:
           cache: 'npm'
       - run: npm ci 
         
-      - name: Build frontend
+      - name: Build App
         run: |
           npm run build
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend
+          path: 
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: frontend
 
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
           cwd: ./
           files: |
-            ../dist
             ./backend
             ./captain-definition
             ./Dockerfile
           outPath: deploy.tar
-          
+
       - uses: premoweb/deploy-to-caprover@main
         with:
           server: '${{ secrets.CAPROVER_SERVER }}'
           app: '${{ secrets.APP_NAME }}'
           token: '${{ secrets.APP_TOKEN }}'
           branch: 'main'
-
