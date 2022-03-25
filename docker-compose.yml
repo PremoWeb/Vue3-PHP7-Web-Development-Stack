@@ -8,5 +8,6 @@ services:
       - NODE_ENV=dev
     volumes:
       - ./backend:/var/www/html
+      - ./frontend/dist:/var/www/html/dist
     ports:
       - 81:8080

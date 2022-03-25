@@ -50,7 +50,7 @@ jobs:
           cwd: ./
           files: |
             ./backend
-            ../backend/dist/
+            ./dist
             ./captain-definition
             ./Dockerfile
           outPath: deploy.tar
