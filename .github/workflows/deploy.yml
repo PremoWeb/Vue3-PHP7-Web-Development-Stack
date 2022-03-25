@@ -30,6 +30,7 @@ jobs:
           command: c
           cwd: ./
           files: |
+            ./dist
             ./backend
             ./captain-definition
             ./Dockerfile
