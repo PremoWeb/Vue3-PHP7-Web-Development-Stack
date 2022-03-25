@@ -19,15 +19,13 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm install
+      - run: npm ci 
         
       - name: Build frontend
-        working-directory: ./backend/dist
         run: |
           npm run build
 
       - uses: master-atul/tar-action@v1.0.2
-        id: compress
         with:
           command: c
           cwd: ./

@@ -15,7 +15,7 @@ export default defineConfig({
     root: 'frontend/',
     build: {
       write: true,
-      outDir: '../backend/dist/',
+      outDir: '../dist/',
       publicPath: '/dist/',
       publicDir: './frontend/public/',
       emptyOutDir: true,
