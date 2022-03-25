@@ -40,6 +40,9 @@ jobs:
           name: dist
           path: dist/
 
+      - name: LIST FILES
+        run: ls -la ./
+
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
