@@ -4,19 +4,12 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import banner from 'vite-plugin-banner';
-import { createHtmlPlugin } from 'vite-plugin-html';
-
 
 export default defineConfig({
     mode: 'jit',
     base: '/dist/',
     plugins: [
       vue(),
-      createHtmlPlugin({
-        minify: false,
-        entry: './main.js',
-        template: 'index.html',
-      }),
       banner(`/**\n * Built by PremoWeb (https://premoweb.com/).\n */`),
     ],
     root: 'frontend/',
@@ -31,7 +24,6 @@ export default defineConfig({
     server: {
       watch: {
         usePolling: true,
-        
       },
       cors: true,
       strictPort: true,
