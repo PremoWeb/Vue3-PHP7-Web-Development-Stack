@@ -21,13 +21,12 @@ jobs:
       - name: Build App
         run: |
           npm run build
-        working-directory: dist
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: dist
-          path: dist
+          path: dist/
 
   deploy:
     runs-on: ubuntu-latest
@@ -39,15 +38,15 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist
-          path: dist
+          path: dist/
 
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
           cwd: ./
           files: |
-            ./dist
-            ./backend
+            dist/
+            ./backend/
             ./captain-definition
             ./Dockerfile
           outPath: deploy.tar
