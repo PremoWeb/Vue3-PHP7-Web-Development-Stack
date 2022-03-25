@@ -8,8 +8,8 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-background/dist
-background/dist-ssr
+#background/dist
+#background/dist-ssr
 *.local
 
 # Editor directories and files
@@ -26,4 +26,4 @@ background/dist-ssr
 #package-lock.json
 #yarn.lock
 
-!/dist
+#!/dist
