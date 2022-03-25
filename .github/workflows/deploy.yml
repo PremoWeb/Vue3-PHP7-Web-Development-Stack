@@ -15,28 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
-      - name: Git Hashes
-        uses: Im-Fran/git-hashes-action@v1.0.0
-        with:
-          short-form: true
-    
-      - name: Setup node
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: '16'
-        
-      - name: Cache dependencies
-      - uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci --ignore-scripts
+          cache: 'npm'
+      - run: npm install
         
       - name: Build frontend
         run: |
