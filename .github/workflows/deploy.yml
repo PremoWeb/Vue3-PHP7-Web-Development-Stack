@@ -13,23 +13,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Install dependencies
-        uses: actions/setup-node@v2
+      
+      - uses: actions/setup-node@v2
         with:
           node-version: '16'
           cache: 'npm'
-        
-      - name: Build App
-        run: |
-          npm ci
-          npm run build
 
-      - name: Upload artifact for `deply-to-caprover`
-        uses: actions/upload-artifact@v3
+      - name: Install dependencies  
+      - run: |
+          npm install
+          npm build
+
+      - name: Upload a Build Artifact
+      - uses: actions/upload-artifact@v3.0.0
         with:
-          name: frontend-dist
-          path: .
+          path: build
+          retention-days: 1
 
   deploy-to-caprover:
     runs-on: ubuntu-latest
@@ -38,28 +37,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Download artifact from `build-frontend-app`
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
-          name: frontend-dist
-          path: .
-
-      - name: Listing files
-        run: |
-          ls -la
+          path: build
 
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
           cwd: ../
           files: |
-            frontend/dist/
-            ./backend/
+            ./build
+            ./backend
             ./captain-definition
             ./Dockerfile
           outPath: deploy.tar
 
-      - name: Deploy to production
       - uses: premoweb/deploy-to-caprover@main
         with:
           server: '${{ secrets.CAPROVER_SERVER }}'
