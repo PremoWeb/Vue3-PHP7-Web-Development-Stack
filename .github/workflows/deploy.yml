@@ -13,23 +13,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Install dependencies
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: '16'
           cache: 'npm'
-        
-      - name: Build App
-        run: |
-          npm ci
-          npm run build
+      - run: npm install
+      - run: npm build
 
-      - name: Upload artifact for `deply-to-caprover`
-        uses: actions/upload-artifact@v3
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.0.0
         with:
-          name: frontend-dist
-          path: .
+          path: ./build/
+          retention-days: 1
 
   deploy-to-caprover:
     runs-on: ubuntu-latest
@@ -41,19 +36,19 @@ jobs:
       - name: Download artifact from `build-frontend-app`
         uses: actions/download-artifact@v3
         with:
-          name: frontend-dist
-          path: .
+          path: ./build/
 
       - name: Listing files
-        run: |
+      - run: |
           ls -la
 
+      - name: Package front-end and backend-end apps together.
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
           cwd: ../
           files: |
-            frontend/dist/
+            ./artifact/
             ./backend/
             ./captain-definition
             ./Dockerfile
