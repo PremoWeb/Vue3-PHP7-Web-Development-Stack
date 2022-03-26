@@ -24,7 +24,6 @@ jobs:
           npm install
           npm build
 
-      - name: Upload a Build Artifact
       - uses: actions/upload-artifact@v3.0.0
         with:
           path: build
@@ -41,7 +40,6 @@ jobs:
         with:
           path: build
 
-      # Package teh app
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
