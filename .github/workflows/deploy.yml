@@ -42,12 +42,13 @@ jobs:
           path: ./build/
 
       - uses: master-atul/tar-action@v1.0.2
-
+        run: |
+          ls -la
         with:
           command: c
           cwd: ./
           files: |
-            /home/runner/work/Vue3-PHP7-Web-Development-Stack/Vue3-PHP7-Web-Development-Stack/build/
+            ./build
             ./backend/
             ./captain-definition
             ./Dockerfile
