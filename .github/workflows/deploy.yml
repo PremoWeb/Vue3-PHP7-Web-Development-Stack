@@ -38,18 +38,13 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           path: build
-      - run: |
-          echo "What is in root?"
-          ls -la
-          echo "Showing what's in the build directory."
-          ls -la build
 
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
           cwd: ../
           files: |
-            ./dist
+            ./artifact
             ./backend
             ./captain-definition
             ./Dockerfile
