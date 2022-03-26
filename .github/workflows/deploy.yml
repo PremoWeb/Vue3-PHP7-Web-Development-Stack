@@ -23,8 +23,9 @@ jobs:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.0.0
         with:
-          path: ./build/
+          path: build
           retention-days: 1
+      - run: ls build
 
   deploy-to-caprover:
     runs-on: ubuntu-latest
@@ -33,28 +34,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      # Get the built artifact
       - name: Download artifact from `build-frontend-app`
-        uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v3
         with:
-          path: ./build/
+          path: build
+      - run: build
 
-      - name: Listing files
-      - run: |
-          ls -la
-
-      - name: Package front-end and backend-end apps together.
+      # Package teh app
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
           cwd: ../
           files: |
-            ./artifact/
-            ./backend/
+            ./build
+            ./backend
             ./captain-definition
             ./Dockerfile
           outPath: deploy.tar
 
-      - name: Deploy to production
+      # Deploy to Caprover
       - uses: premoweb/deploy-to-caprover@main
         with:
           server: '${{ secrets.CAPROVER_SERVER }}'
