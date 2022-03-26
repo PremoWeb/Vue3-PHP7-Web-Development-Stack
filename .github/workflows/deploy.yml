@@ -27,7 +27,7 @@ jobs:
         with:
           path: build
           retention-days: 1
-      - run: ls -la
+      - run: ls -la build/
 
   deploy-to-caprover:
     runs-on: ubuntu-latest
