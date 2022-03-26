@@ -39,6 +39,7 @@ jobs:
         with:
           name: build
           path: build/
+      - run: ls build/
 
       - uses: master-atul/tar-action@v1.0.2
         with:
