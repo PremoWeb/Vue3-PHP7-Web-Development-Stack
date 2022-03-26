@@ -40,19 +40,18 @@ jobs:
         with:
           name: build
           path: ./build/
-      - run: pwd
 
       - uses: master-atul/tar-action@v1.0.2
+
         with:
           command: c
           cwd: ./
           files: |
-            ./build/
+            /home/runner/work/Vue3-PHP7-Web-Development-Stack/Vue3-PHP7-Web-Development-Stack/build/
             ./backend/
             ./captain-definition
             ./Dockerfile
           outPath: deploy.tar
-      - run: pwd
 
       - uses: premoweb/deploy-to-caprover@main
         with:
