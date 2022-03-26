@@ -41,6 +41,7 @@ jobs:
         with:
           path: build
 
+      # Package teh app
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
