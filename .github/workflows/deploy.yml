@@ -25,7 +25,6 @@ jobs:
 
       - uses: actions/upload-artifact@v3.0.0
         with:
-          path: test/
           name: test
           retention-days: 1
 
@@ -38,14 +37,13 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          path: test/
           name: test
 
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
           files: |
-            ./dist.zip
+            ./test.zip
             ./backend
             ./captain-definition
             ./Dockerfile
