@@ -39,7 +39,7 @@ jobs:
         with:
           name: build
           path: build/
-      - run: ls build/
+      - run: pwd
 
       - uses: master-atul/tar-action@v1.0.2
         with:
@@ -51,6 +51,7 @@ jobs:
             ./captain-definition
             ./Dockerfile
           outPath: deploy.tar
+      - run: pwd
 
       - uses: premoweb/deploy-to-caprover@main
         with:
