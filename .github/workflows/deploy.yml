@@ -56,6 +56,12 @@ jobs:
             ./Dockerfile
           outPath: deploy.tar
 
+      - uses: actions/upload-artifact@v3.0.0
+        with:
+          path: ./
+          name: deploy.tar
+          retention-days: 1
+
       - uses: premoweb/deploy-to-caprover@main
         with:
           server: '${{ secrets.CAPROVER_SERVER }}'
