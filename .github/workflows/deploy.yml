@@ -39,17 +39,12 @@ jobs:
           name: build
           path: ./build/
 
-      - name: Add build directory to repository
-        run: |
-          mkdir -p build
-          cp -r build/* .
-
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
           cwd: ./
           files: |
-            ./build
+            build
             ./backend/
             ./captain-definition
             ./Dockerfile
