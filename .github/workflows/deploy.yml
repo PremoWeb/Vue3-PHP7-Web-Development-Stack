@@ -38,8 +38,8 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          path: dist
-          name: build/
+          path: build/
+          name: dist
 
       # Copy the contents of dist to dist-caprover
       - run: |
