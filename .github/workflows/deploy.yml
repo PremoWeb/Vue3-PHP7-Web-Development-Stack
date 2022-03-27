@@ -25,8 +25,8 @@ jobs:
 
       - uses: actions/upload-artifact@v3.0.0
         with:
-          name: test
-          path: test
+          name: dist
+          path: dist
           retention-days: 1
 
   deploy-to-caprover:
@@ -38,14 +38,14 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          name: test
-          path: test
+          name: dist
+          path: dist
 
       - uses: master-atul/tar-action@v1.0.2
         with:
           command: c
           files: |
-            ./test*
+            ./dist*
             ./backend
             ./captain-definition
             ./Dockerfile
