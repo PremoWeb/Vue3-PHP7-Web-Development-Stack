@@ -26,7 +26,7 @@ jobs:
       - uses: actions/upload-artifact@v3.0.0
         with:
           name: test
-          path: ./
+          path: test
           retention-days: 1
 
   deploy-to-caprover:
@@ -39,7 +39,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: test
-          path: ./
+          path: test
 
       - uses: master-atul/tar-action@v1.0.2
         with:
